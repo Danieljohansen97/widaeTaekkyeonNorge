@@ -25,14 +25,13 @@ const setupUI = (user) => {
         loggedInLinks.forEach(item => item.style.display = 'block');
         loggedOutLinks.forEach(item => item.style.display = 'none');
     } else {
-        // hide admin stuff
-        adminItems.forEach(item => item.style.display = 'none');
         // hide account info
         accountDetails.innerHTML = '';
         // toggle UI elements
         loggedInLinks.forEach(item => item.style.display = 'none');
         loggedOutLinks.forEach(item => item.style.display = 'block');
-    };
+        adminItems.forEach(item => item.style.display = 'none');
+    }
 };
 
 // setup posts

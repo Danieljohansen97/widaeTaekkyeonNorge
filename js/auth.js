@@ -14,7 +14,7 @@ adminForm.addEventListener('submit', (e) => {
 auth.onAuthStateChanged(user => {
     if (user) {
         user.getIdTokenResult().then(idTokenResult => {
-            user.admin = idTokenResult.claims;
+            user.admin = idTokenResult.claims.admin;
             setupUI(user);
         });
         // get data
