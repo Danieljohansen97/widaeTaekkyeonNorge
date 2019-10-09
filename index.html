@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Let browser know website is optimized for mobile-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="css/materialize.css">
+    <title>Widae Taekkyeon Norge</title>
+  </head>
+  <body class="grey lighten-3">
+
+    <!-- Navbar dropdown structure -->
+    <ul id="navbar-dropdown" class="dropdown-content">
+        <li class="active"><a href="#">Hjem</a></li>
+        <li><a href="blog.html">Blogg</a></li>
+        <li><a href="#">Historie</a></li>
+        <li><a href="#">Kontakt</a></li>
+    </ul>
+
+    <!-- NAVBAR -->
+    <nav class="z-depth-0 grey lighten-4">
+        <div class="nav-wrapper container">
+            <a href="#" class="brand-logo hide-on-med-and-down">
+                <img src="assets/logo foran.png" style="width: 180px; margin-top: 10px;">
+            </a>
+            <ul id="nav-mobile" class="right">
+                <li class="logged-in" style="display: none;">
+                    <a href="#" class="grey-text modal-trigger" data-target="modal-account">Konto</a>
+                </li>
+                <li class="logged-in" style="display: none;">
+                    <a href="#" class="grey-text" id="logout">Logg ut</a>
+                </li>
+                <li class="logged-in" style="display: none;">
+                    <a href="#" class="grey-text modal-trigger" data-target="modal-create">Nytt blogginnlegg</a>
+                </li>
+                <li class="logged-out" style="display: none;">
+                    <a href="#" class="grey-text modal-trigger" data-target="modal-login">Logg inn</a>
+                </li>
+                <li class="logged-out" style="display: none;">
+                    <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Opprett ny bruker</a>
+                </li>
+                <li>
+                    <a class="grey-text dropdown-trigger" href="#" data-target="navbar-dropdown">Meny<i class="material-icons right">arrow_drop_down</i></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- SIGN UP MODAL -->
+    <div id="modal-signup" class="modal">
+        <div class="modal-content">
+            <h4>Opprett ny bruker</h4><br />
+            <form id="signup-form">
+                <div class="input-field">
+                    <input type="email" id="signup-email" required />
+                    <label for="signup-email">E-post</label>
+                </div>
+                <div class="input-field">
+                    <input type="password" id="signup-password" required />
+                    <label for="signup-password">Velg passord</label>
+                </div>
+                <div class="input-field">
+                    <input type="text" id="signup-name" required />
+                    <label for="signup-name">Navn</label>
+                </div>
+                <div class="input-field">
+                    <input type="text" class="datepicker" id="signup-age" required />
+                    <label for="signup-age">Fødselsdato</label>
+                </div>
+                <div class="input-field">
+                    <input type="number" id="signup-phone" required />
+                    <label for="signup-phone">Mobiltelefon</label>
+                </div>
+                <div class="input-field">
+                    <input type="url" id="signup-image">
+                    <label for="signup-image">Bilde url</label>
+                </div>
+                <button class="btn yellow darken-2 z-depth-0">Fortsett</button>
+            </form>
+        </div>
+    </div>
+    <!-- LOGIN MODAL -->
+    <div id="modal-login" class="modal">
+        <div class="modal-content">
+            <h4>Logg inn</h4><br />
+            <form id="login-form">
+                <div class="input-field">
+                    <input type="email" id="login-email" required />
+                    <label for="login-email">E-post</label>
+                </div>
+                <div class="input-field">
+                    <input type="password" id="login-password" required />
+                    <label for="login-password">Ditt passord</label>
+                </div>
+                <button class="btn yellow darken-2 z-depth-0">Logg inn</button>
+            </form>
+        </div>
+    </div>
+    <!-- ACCOUNT MODAL -->
+    <div id="modal-account" class="modal">
+        <div class="modal-content grey lighten-2">
+            <div class="account-details"></div>
+            <div class="account-extras"></div>
+        </div>
+    </div>
+    <!-- CREATE BLOGPOST MODAL -->
+    <div id="modal-create" class="modal">
+        <div class="modal-content">
+            <h4>Nytt innlegg</h4><br />
+            <form id="create-form">
+                <div class="input-field">
+                    <input type="text" id="title" required>
+                    <label for="title">Tittel</label>
+                </div>
+                <div class="input-field">
+                    <textarea id="content" class="materialize-textarea" required></textarea>
+                    <label for="content">Innhold</label>
+                </div>
+                <button class="btn yellow darken-2 z-depth-0">Publiser</button>
+            </form>
+        </div>
+    </div>
+    <!-- BLOGPOST LIST -->
+    <div class="container" style="margin-top: 40px;">
+        <ul class="collapsible z-depth-0 posts" style="border: none;">
+            
+        </ul>
+    </div>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyB7YIA4gReEXiPUx44ZayruUy4c7SiBwOE",
+            authDomain: "widaetaekkyeon-norge.firebaseapp.com",
+            databaseURL: "https://widaetaekkyeon-norge.firebaseio.com",
+            projectId: "widaetaekkyeon-norge",
+            appId: "1:200843495453:web:3b4d0c6f076d7aa5649ef4",
+            measurementId: "G-47WR0BBW5B"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+
+        // Make auth and firestore references
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        // Update firestore settings
+        db.settings({});
+    </script>
+    <!--JavaScript at end of body for optimized loading-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+  </body>
+</html>
