@@ -67,6 +67,10 @@ signupForm.addEventListener('submit', (e) => {
         const modal = document.querySelector('#modal-signup');
         M.Modal.getInstance(modal).close();
         signupForm.reset();
+        // remove error styles
+        signupForm.querySelector('.error').innerHTML = '';
+    }).catch(err => {
+        signupForm.querySelector('.error').innerHTML = err.message;
     });
 });
 
@@ -77,6 +81,7 @@ logout.addEventListener('click', (e) => {
     auth.signOut();
 });
 
+// login
 const loginForm = document.querySelector('#login-form');
 loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -90,6 +95,15 @@ loginForm.addEventListener('submit', (e) => {
         const modal = document.querySelector('#modal-login');
         M.Modal.getInstance(modal).close();
         loginForm.reset();
+        loginForm.querySelector('.error').innerHTML = '';
+    }).catch(err => {
+        // Print error message and format in some cases
+        if (err.message == 'There is no user record corresponding to this identifier. The user may have been deleted.') {
+            err.message = 'User does not exist';
+        } else if (err.message == 'The password is invalid or the user does not have a password.') {
+            err.message = 'Wrong password';
+        }
+        loginForm.querySelector('.error').innerHTML = err.message;
     });
 });
 
