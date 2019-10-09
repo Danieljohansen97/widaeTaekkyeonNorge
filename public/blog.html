@@ -28,14 +28,14 @@
                 <img src="assets/logo foran.png" style="width: 180px; margin-top: 10px;">
             </a>
             <ul id="nav-mobile" class="right">
+                <li class="admin" style="display: none;">
+                    <a href="#" class="green-text modal-trigger" data-target="modal-create"><i class="material-icons">note_add</i></a>
+                </li>
                 <li class="logged-in" style="display: none;">
                     <a href="#" class="grey-text modal-trigger" data-target="modal-account">Konto</a>
                 </li>
                 <li class="logged-in" style="display: none;">
                     <a href="#" class="grey-text" id="logout">Logg ut</a>
-                </li>
-                <li class="logged-in" style="display: none;">
-                    <a href="#" class="grey-text modal-trigger" data-target="modal-create">Nytt blogginnlegg</a>
                 </li>
                 <li class="logged-out" style="display: none;">
                     <a href="#" class="grey-text modal-trigger" data-target="modal-login">Logg inn</a>
@@ -49,6 +49,13 @@
             </ul>
         </div>
     </nav>
+
+    <!-- ADMIN ACTIONS -->
+    <form class="center-align admin-actions admin" style="margin: 40px auto; max-width: 300px; display: none;">
+        <input type="email" placeholder="Brukerens E-post" id="admin-email" required />
+        <button class="btn-small green darken-2 z-depth-0">Legg til administrator</button>
+    </form>
+
     <!-- SIGN UP MODAL -->
     <div id="modal-signup" class="modal">
         <div class="modal-content">
@@ -62,7 +69,24 @@
                     <input type="password" id="signup-password" required />
                     <label for="signup-password">Velg passord</label>
                 </div>
+                <div class="input-field">
+                    <input type="text" id="signup-name" required />
+                    <label for="signup-name">Navn</label>
+                </div>
+                <div class="input-field">
+                    <input type="text" class="datepicker" id="signup-age" required />
+                    <label for="signup-age">Fødselsdato (Klikk for å velge)</label>
+                </div>
+                <div class="input-field">
+                    <input type="number" id="signup-phone" required />
+                    <label for="signup-phone">Mobiltelefon</label>
+                </div>
+                <div class="input-field">
+                    <input type="url" id="signup-image">
+                    <label for="signup-image">Bilde url</label>
+                </div>
                 <button class="btn yellow darken-2 z-depth-0">Fortsett</button>
+                <p class="error pink-text center-align"></p>
             </form>
         </div>
     </div>
@@ -80,13 +104,13 @@
                     <label for="login-password">Ditt passord</label>
                 </div>
                 <button class="btn yellow darken-2 z-depth-0">Logg inn</button>
+                <p class="error pink-text center-align"></p>
             </form>
         </div>
     </div>
     <!-- ACCOUNT MODAL -->
     <div id="modal-account" class="modal">
-        <div class="modal-content center-align">
-            <h4>Bruker</h4><br />
+        <div class="modal-content grey lighten-2">
             <div class="account-details"></div>
             <div class="account-extras"></div>
         </div>
@@ -118,8 +142,9 @@
     <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-functions.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-analytics.js"></script>
-
+    
     <script>
         // Your web app's Firebase configuration
         var firebaseConfig = {
@@ -137,10 +162,11 @@
         // Make auth and firestore references
         const auth = firebase.auth();
         const db = firebase.firestore();
+        const functions = firebase.functions();
+
+        // Update firestore settings
+        db.settings({});
     </script>
-
-
-
     <!--JavaScript at end of body for optimized loading-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>

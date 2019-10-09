@@ -25,7 +25,7 @@
     <nav class="z-depth-0 grey lighten-4">
         <div class="nav-wrapper container">
             <a href="#" class="brand-logo hide-on-med-and-down">
-                <img src="assets/logo foran.png" style="width: 180px; margin-top: 10px;">
+                <img src="assets/logo-foran.png" style="width: 180px; margin-top: 10px;">
             </a>
             <ul id="nav-mobile" class="right">
                 <li class="logged-in" style="display: none;">
@@ -33,9 +33,6 @@
                 </li>
                 <li class="logged-in" style="display: none;">
                     <a href="#" class="grey-text" id="logout">Logg ut</a>
-                </li>
-                <li class="admin" style="display: none;">
-                    <a href="#" class="grey-text modal-trigger" data-target="modal-create">Nytt blogginnlegg</a>
                 </li>
                 <li class="logged-out" style="display: none;">
                     <a href="#" class="grey-text modal-trigger" data-target="modal-login">Logg inn</a>
@@ -114,29 +111,6 @@
             <div class="account-details"></div>
             <div class="account-extras"></div>
         </div>
-    </div>
-    <!-- CREATE BLOGPOST MODAL -->
-    <div id="modal-create" class="modal">
-        <div class="modal-content">
-            <h4>Nytt innlegg</h4><br />
-            <form id="create-form">
-                <div class="input-field">
-                    <input type="text" id="title" required>
-                    <label for="title">Tittel</label>
-                </div>
-                <div class="input-field">
-                    <textarea id="content" class="materialize-textarea" required></textarea>
-                    <label for="content">Innhold</label>
-                </div>
-                <button class="btn yellow darken-2 z-depth-0">Publiser</button>
-            </form>
-        </div>
-    </div>
-    <!-- BLOGPOST LIST -->
-    <div class="container" style="margin-top: 40px;">
-        <ul class="collapsible z-depth-0 posts" style="border: none;">
-            
-        </ul>
     </div>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js"></script>
