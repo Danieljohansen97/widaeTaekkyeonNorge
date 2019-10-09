@@ -19,7 +19,7 @@ auth.onAuthStateChanged(user => {
         });
         // get data
         db.collection('posts').onSnapshot(snapshot => {
-            setupPosts(snapshot.docs);
+                setupPosts(snapshot.docs);
         }, err =>  console.log(err.message));
     } else {
         setupUI();
@@ -29,22 +29,23 @@ auth.onAuthStateChanged(user => {
 
 // create new post
 const createForm = document.querySelector('#create-form');
-createForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+if (createForm) {
+    createForm.addEventListener('submit', (e) => {
+        e.preventDefault();
 
-    db.collection('posts').add({
-        title: createForm['title'].value,
-        content: createForm['content'].value
-    }).then(() => {
-        // close modal and reset form
-        const modal = document.querySelector('#modal-create');
-        M.Modal.getInstance(modal).close();
-        createForm.reset();
-    }).catch(err => {
-        console.log(err.message);
+        db.collection('posts').add({
+            title: createForm['title'].value,
+            content: createForm['content'].value
+        }).then(() => {
+            // close modal and reset form
+            const modal = document.querySelector('#modal-create');
+            M.Modal.getInstance(modal).close();
+            createForm.reset();
+        }).catch(err => {
+            console.log(err.message);
+        });
     });
-});
-
+};
 // signup
 const signupForm = document.querySelector('#signup-form');
 signupForm.addEventListener('submit', (e) => {

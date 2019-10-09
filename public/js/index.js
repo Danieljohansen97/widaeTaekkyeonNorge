@@ -35,26 +35,27 @@ const setupUI = (user) => {
 };
 
 // setup posts
-const setupPosts = (data) => {
 
-    if (data.length) {
-        let html = '';
-        data.forEach(doc => {
-            const post = doc.data();
-            const li = `
-                <li>
-                    <div class="collapsible-header grey lighten-4">${post.title}</div>
-                    <div class="collapsible-body white">${post.content}</div>
-                </li>
-            `;
-            html += li;
-        });
-        postList.innerHTML = html;
-    } else {
-        postList.innerHTML = '<h5 class="center-align red-text">Logg inn for å se blogg</5>';
-    }
-
-};
+    const setupPosts = (data) => {
+        if (postList) {
+            if (data.length) {
+                let html = '';
+                data.forEach(doc => {
+                    const post = doc.data();
+                    const li = `
+                        <li>
+                            <div class="collapsible-header grey lighten-4">${post.title}</div>
+                            <div class="collapsible-body white">${post.content}</div>
+                        </li>
+                    `;
+                    html += li;
+                });
+                postList.innerHTML = html;
+            } else {
+                postList.innerHTML = '<h5 class="center-align red-text">Logg inn for å se blogg</5>';
+            }
+        };
+    };
 
 
 // Setup materialize components
