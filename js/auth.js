@@ -2,12 +2,13 @@
 const adminForm = document.querySelector('.admin-actions');
 adminForm.addEventListener('submit', (e) => {
     e.preventDefault();
+
     const adminEmail = document.querySelector('#admin-email').value;
     const addAdminRole = functions.httpsCallable('addAdminRole');
     addAdminRole({ email: adminEmail }).then(result => {
         console.log(result);
-    })
-})
+    });
+});
 
 // listen for auth status changes
 auth.onAuthStateChanged(user => {
@@ -15,13 +16,11 @@ auth.onAuthStateChanged(user => {
         user.getIdTokenResult().then(idTokenResult => {
             user.admin = idTokenResult.claims;
             setupUI(user);
-        })
+        });
         // get data
         db.collection('posts').onSnapshot(snapshot => {
             setupPosts(snapshot.docs);
-        }, err => {
-            console.log(err.message);
-        });
+        }, err =>  console.log(err.message));
     } else {
         setupUI();
         setupPosts([]);
@@ -33,19 +32,18 @@ const createForm = document.querySelector('#create-form');
 createForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-db.collection('posts').add({
-    title: createForm['title'].value,
-    content: createForm['content'].value
-}).then(() => {
-    // close modal and reset form
-    const modal = document.querySelector('#modal-create');
-    M.Modal.getInstance(modal).close();
-    createForm.reset();
-}).catch(err => {
-    console.log(err.message);
-})
-
-})
+    db.collection('posts').add({
+        title: createForm['title'].value,
+        content: createForm['content'].value
+    }).then(() => {
+        // close modal and reset form
+        const modal = document.querySelector('#modal-create');
+        M.Modal.getInstance(modal).close();
+        createForm.reset();
+    }).catch(err => {
+        console.log(err.message);
+    });
+});
 
 // signup
 const signupForm = document.querySelector('#signup-form');
