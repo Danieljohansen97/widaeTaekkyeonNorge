@@ -2,13 +2,18 @@ const postList = document.querySelector('.posts');
 const loggedOutLinks = document.querySelectorAll('.logged-out');
 const loggedInLinks = document.querySelectorAll('.logged-in');
 const accountDetails = document.querySelector('.account-details');
+const adminItems = document.querySelectorAll('.admin');
 
 const setupUI = (user) => {
     if (user) {
+        if(user.admin){
+            adminItems.forEach(item => item.style.display = 'block');
+        }
         // account info
         db.collection('users').doc(user.uid).get().then(doc => {
             const html = `
                 <h4 class="center-align">${doc.data().name}</h4>
+                <div class="pink-text center-align">${user.admin ? 'Administrator' : ''}</div>
                 <img class="circle center-align" style="width: 150px;" src="${doc.data().imageurl}">
                 <div class="left-align">F.dato: ${doc.data().age}</div>
                 <div class="left-align">Mobil: ${doc.data().phone}</div>
@@ -20,6 +25,8 @@ const setupUI = (user) => {
         loggedInLinks.forEach(item => item.style.display = 'block');
         loggedOutLinks.forEach(item => item.style.display = 'none');
     } else {
+        // hide admin stuff
+        adminItems.forEach(item => item.style.display = 'none');
         // hide account info
         accountDetails.innerHTML = '';
         // toggle UI elements

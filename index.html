@@ -34,7 +34,7 @@
                 <li class="logged-in" style="display: none;">
                     <a href="#" class="grey-text" id="logout">Logg ut</a>
                 </li>
-                <li class="logged-in" style="display: none;">
+                <li class="admin" style="display: none;">
                     <a href="#" class="grey-text modal-trigger" data-target="modal-create">Nytt blogginnlegg</a>
                 </li>
                 <li class="logged-out" style="display: none;">
@@ -49,6 +49,13 @@
             </ul>
         </div>
     </nav>
+
+    <!-- ADMIN ACTIONS -->
+    <form class="center-align admin-actions admin" style="margin: 40px auto; max-width: 300px; display: none;">
+        <input type="email" placeholder="Brukerens E-post" id="admin-email" required />
+        <button class="btn-small green darken-2 z-depth-0">Legg til administrator</button>
+    </form>
+
     <!-- SIGN UP MODAL -->
     <div id="modal-signup" class="modal">
         <div class="modal-content">
@@ -133,8 +140,9 @@
     <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-functions.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-analytics.js"></script>
-
+    
     <script>
         // Your web app's Firebase configuration
         var firebaseConfig = {
@@ -152,6 +160,7 @@
         // Make auth and firestore references
         const auth = firebase.auth();
         const db = firebase.firestore();
+        const functions = firebase.functions();
 
         // Update firestore settings
         db.settings({});
