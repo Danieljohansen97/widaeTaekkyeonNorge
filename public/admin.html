@@ -15,10 +15,10 @@
 
     <!-- Navbar dropdown structure -->
     <ul id="navbar-dropdown" class="dropdown-content">
-        <li><a href="index.html">Hjem</a></li>
+        <li class="active"><a href="#">Hjem</a></li>
         <li><a href="blog.html">Blogg</a></li>
         <li><a href="history.html">Historie</a></li>
-        <li class="active"><a href="contact.html">Kontakt</a></li>
+        <li><a href="contact.html">Kontakt</a></li>
         <li class="admin" style="display: none;"><a href="admin.html">Admin</a></li>
     </ul>
 
@@ -26,7 +26,7 @@
     <nav class="z-depth-0 grey lighten-4">
         <div class="nav-wrapper container">
             <a href="#" class="brand-logo hide-on-med-and-down">
-                <img src="#" style="width: 180px; margin-top: 10px;">
+                <img src="assets/logo-foran.png" style="width: 180px; margin-top: 10px;">
             </a>
             <ul id="nav-mobile" class="right">
                 <li class="logged-in" style="display: none;">
@@ -47,6 +47,12 @@
             </ul>
         </div>
     </nav>
+
+    <!-- ADMIN ACTIONS -->
+    <form class="center-align admin-actions admin" style="margin: 40px auto; max-width: 300px; display: none;">
+        <input type="email" placeholder="Brukerens E-post" id="admin-email" required />
+        <button class="btn-small green darken-2 z-depth-0">Legg til administrator</button>
+    </form>
 
     <!-- SIGN UP MODAL -->
     <div id="modal-signup" class="modal">
