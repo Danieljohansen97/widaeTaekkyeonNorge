@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var datepickers = document.querySelectorAll('.datepicker');
     var datepickerOptions = {
         'autoClose': true,
-        'yearRange': [1950, 2100] 
+        'yearRange': [1900, 2100] 
     }
     M.Datepicker.init(datepickers, datepickerOptions);
     
